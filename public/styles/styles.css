@@ -1,0 +1,168 @@
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body{
+    overflow-x: hidden;
+    background-color: #e8e8e8;
+    height: 100vh;
+}
+
+.main{
+    padding: 2% 5%;
+}
+@media (max-width: 576px){
+    .navbar{
+        padding: 8px 7px;
+    }
+}
+
+.nav-item{
+    font-size: 1.25rem;
+    margin-left: 5vw;
+}
+
+.navbar-brand{
+    font-size: 2rem;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@media(max-width:576px){
+    .navbar-brand{
+        font-size: 1.5rem;
+        margin: 0;
+    }
+}
+
+header{  
+    background-image: url("/images/wider-green-leaves.avif");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+}
+
+.nav-bg-img{
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 0 3%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+@media(max-width:576px){
+    .nav-bg-img{
+        padding: 0;
+    }
+}
+
+.farmer-name{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    margin: 1rem 0 2rem 0;
+    font-size: 2.5rem;
+    letter-spacing: -0.18rem;
+}
+
+.crop-container{
+    border-radius: 30px;
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+               -15px -15px 30px #ffffff;
+    overflow: hidden;
+    margin: 0.5rem 1rem;
+}
+
+.crop-img-container{
+    width: 150px;
+    height: 150px;
+    background-image: url("/images/tomatoes-in-hand.avif");
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat; 
+    border-radius: 10px;
+    border: 2px solid #4C774E;
+    transition: all 0.3s;
+}
+.crop-img-container:hover{
+    transform: scale(1.1);
+}
+
+.crop-details-container{
+    margin-left: 5px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+  
+.input {
+    min-height: 50px;
+    min-width: 130px;
+    padding: 0 1rem;
+    font-size: 15px;
+    border: 1px solid #2e6002;
+    border-radius: 6px 0 0 6px;
+    background-color: transparent;
+  }
+@media(max-width:576px){
+    .input{
+        padding: 0 0.4rem;
+    }
+}
+  
+  .button--submit {
+    min-height: 50px;
+    min-width: 110px;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: #2e6002;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+  }
+@media(max-width:576px){
+    .button--submit{
+        padding: 0.5rem 0.8rem;
+    }
+}
+  
+  .button--submit:hover {
+    background-color: #459201;
+  }
+  
+  .input:focus, .input:focus-visible {
+    border-color: #459201;
+    outline: none;
+  }
+  
+
+
+
+  .button-add{
+    color: #fff;
+    font-weight: 700;
+    position: fixed;
+    right: 6%;
+    bottom: 10px;
+    z-index: 900;
+    border-radius: 10px;
+    padding: 1.1rem;
+    border-width: 0px;
+    background-color: #2e6002;
+    background: rgb(91,190,3);
+    background: linear-gradient(90deg, rgba(91,190,3,1) 0%, rgba(105,195,11,1) 20%, rgba(112,189,24,1) 36%, rgba(118,194,18,1) 66%, rgba(114,176,19,1) 100%);
+}
+.button-add:hover{
+    background-color: #459201;
+
+}
+  
