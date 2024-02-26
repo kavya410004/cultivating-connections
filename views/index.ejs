@@ -1,51 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cultivating Connections</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Patua+One&display=swap" rel="stylesheet">
-    <!-- BS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/f4b2636d3b.js" crossorigin="anonymous"></script>
-    <!-- JS -->
-    <script src="/styles/styles.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-  <header>
-    <div class="nav-bg-img">
-      <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="">Cultivating Connections</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link "href=" ">Dashboard </a>
-            </li> 
-            <li class="nav-item active">
-              <a class="nav-link " href=" ">Sold Crops</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link " href=" ">Settings</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <div class="main">
-    <div class="farmer-name-container">
-      <h1 class="farmer-name text-center">Farmer name's Dashboard</h1>
+<%-include("partials/header.ejs") %>
+    <div class="main-heading-container">
+      <h1 class="main-heading text-center">Farmer name's Dashboard</h1>
     </div>
     <div id="crops-on-sale">
       <div class="row ">
@@ -60,94 +15,54 @@
                 quantity: -78- kg <br><!-- put quantity here -->
                 date: -17/02/2024- <br> <!-- put date here -->
               </p>
-              <form action="/send-request">
-                <div class="input-group">
-                  <input type="number" class="input" id="" name="desired-quantity" placeholder="Enter quantity" autocomplete="off">
-                  <input class="button--submit" value="Send Request" type="submit">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-12 col-md-6 col-xl-4 d-flex justify-content-center">
-          <div class="card crop-container" style="max-width:400px">
-            <img class="card-img-top" src="images/tomatoes-in-hand.avif" alt="Card image" style="width:100%">
-            <div class="card-body">
-              <h4 class="card-title">crop name</h4>
-              <p class="card-text">
-                village: -village name- <br>
-                sold by: -farmer name- <br><!-- put farmer name here -->
-                quantity: -78- kg <br><!-- put quantity here -->
-                date: -17/02/2024- <br> <!-- put date here -->
-              </p>
-              <form action="/send-request">
-                <div class="input-group">
-                  <input type="number" class="input" id="" name="desired-quantity" placeholder="Enter quantity" autocomplete="off">
-                  <input class="button--submit" value="Send Request" type="submit">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-12 col-md-6 col-xl-4 d-flex justify-content-center">
-          <div class="card crop-container" style="max-width:400px">
-            <img class="card-img-top" src="images/tomatoes-in-hand.avif" alt="Card image" style="width:100%">
-            <div class="card-body">
-              <h4 class="card-title">crop name</h4>
-              <p class="card-text">
-                village: -village name- <br>
-                sold by: -farmer name- <br><!-- put farmer name here -->
-                quantity: -78- kg <br><!-- put quantity here -->
-                date: -17/02/2024- <br> <!-- put date here -->
-              </p>
-              <form action="/send-request">
-                <div class="input-group">
-                  <input type="number" class="input" id="" name="desired-quantity" placeholder="Enter quantity" autocomplete="off">
-                  <input class="button--submit" value="Send Request" type="submit">
-                </div>
-              </form>
             </div>
           </div>
         </div>
       </div>
-      <button type="button" class="button-add" data-toggle="modal" data-target="#staticBackdrop">Add crop</button>
-      
-      <!-- Modal -->
+    </div>
+    <button type="button" class="button-add" data-toggle="modal" data-target="#staticBackdrop">Sell crop</button>      
+      <!-- Add Crop Modal -->
       <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
           <div class="modal-content modal-style-edit">
             <div class="modal-header">
-              <h5 class="modal-title modal-heading-style" id="staticBackdropLabel">Add transaction</h5>
+              <h5 class="modal-title modal-heading-style" id="staticBackdropLabel">Add crop details</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">    
-               <label class = "label-head" >Expenditure</label> 
-               <input type="text" name="expenditure" class="input-modal" placeholder="Expenditure" >
-               <label class = "label-head">Select a Category:</label>
-               <br>
-                <select id="dropdown" class = "input-modal">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                </select>
-                <div class = "d-flex flex-row justify-content-end"><a href="">Add new category</a></div> <!-- fill this -->
-                <br>
-                <label class = "label-head" >Enter Amount</label> 
-                <input type="number" name="amount" class="input-modal" placeholder="Amount" >
-                <label class = "label-head"> Date</label>
-                <input type = "date" name="date" class="input-modal">
+            <div class="modal-body">     
+               <div class="d-flex justify-content-center">
+                  <label class="custum-file-upload" for="image">
+                    <div class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path fill="" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+                    </div>
+                    <div class="text">
+                      <span>Click to upload crop image</span>
+                    </div>
+                    <input type="file" id="image" name="crop-image" accept="image/*">
+                  </label>
+                </div>
+                <label class = "label-head" >Crop name :</label>
+                <input type="text" name="crop-name" class="input-modal" placeholder="Enter crop name" >
+                <label class = "label-head" >Quantity :</label> 
+                <input type="number" name="quantity" class="input-modal" placeholder="Enter quantity" >
+                <label class = "label-head" >Price per kg :</label> 
+                <input type="number" name="price-per-kg" class="input-modal price-input" placeholder="Enter price per kg" ><span> /kg</span>
             </div>
             <div class="modal-footer">
-              <button type="button" class="modal-cancel-button" data-dismiss="modal">Close</button>
-              <button type="button" class="modal-add-button">Add</button>
+              <button type="button" class="modal-submit-button">Submit</button>
             </div>
           </div>
         </div>
-    </div>
-  </div>
-</body>
-</html>
+        <%-include("partials/footer.ejs") %>
+        
+
+
+
+        <!-- <form action="/send-request">
+          <div class="input-group">
+            <input type="number" class="quantity-input" id="" name="desired-quantity" placeholder="Enter quantity" autocomplete="off">
+            <input class="button--submit" value="Send Request" type="submit">
+          </div>
+        </form> -->
