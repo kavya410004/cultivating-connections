@@ -34,16 +34,16 @@
           <button onclick="showForm(2)" class="button_1">Buyer</button>
       </div>
       <form id="form1" class="form-register active" method="POST" action="/farmerRegister">
-          <label for="field1" class = "label_1">Name:</label>
-          <input type="text" id="field1" name="field1" class="input_1">
-          <label for="field2" class = "label_1">District:</label>
-          <input type="text" id="field2" name="field2" class="input_1">
-          <label for="field3" class = "label_1">Phone Number:</label>
-          <input type="number" id="field3" name="field3" class="input_1">
-          <label for="field4" class = "label_1">New Password:</label>
-          <input type="password" id="field4" name="field4" class="input_1">
-          <label for="field5" class = "label_1">Confirm Password:</label>
-          <input type="password" id="field5" name="field5" class="input_1">
+          <label class = "label_1">Name:</label>
+          <input type="text"  name="farmerName" class="input_1">
+          <label class = "label_1">District:</label>
+          <input type="text"  name="district" class="input_1">
+          <label class = "label_1">Phone Number:</label>
+          <input type="tel"  name="phno" class="input_1">
+          <label class = "label_1">New Password:</label>
+          <input type="password"  name="password1" class="input_1">
+          <label class = "label_1">Confirm Password:</label>
+          <input type="password"  name="password2" class="input_1">
           <button type="submit" class = "button_2">Submit</button>
           <div class = "text-center mt-3">
             <p class = "already-user">Already have a account?</p>
@@ -51,14 +51,14 @@
           </div> 
       </form>
       <form id="form2" class="form-register" method="POST" action="/buyerRegister">
-          <label for="field6" class = "label_1">Name:</label>
-          <input type="text" id="field6" name="field6" class="input_1">
-          <label for="field7" class = "label_1">Phone Number:</label>
-          <input type="number" id="field7" name="field7" class="input_1">
-          <label for="field8" class = "label_1">New password</label>
-          <input type="password" id="field8" name="field8" class="input_1">
-          <label for="field9" class = "label_1">Confirm password</label>
-          <input type="password" id="field9" name="field9" class="input_1">
+          <label  class = "label_1">Name:</label>
+          <input type="text" name="buyerName" class="input_1">
+          <label class = "label_1">Phone Number:</label>
+          <input type="tel" name="phno" class="input_1">
+          <label class = "label_1">New password</label>
+          <input type="password" name="password1" class="input_1">
+          <label class = "label_1">Confirm password</label>
+          <input type="password" name="password2" class="input_1">
           <button type="submit" class = "button_2">Submit</button>
           <div class = "text-center mt-3">
             <p class = "already-user">Already have a account?</p>

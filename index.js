@@ -9,7 +9,7 @@ app.get("/",(req,res)=>{
     res.render("register.ejs");
 });
 
-app.get("/farmer-dashboard", (req,res) => {
+app.get("/farmer-home", (req,res) => {
     res.render("index.ejs");
 });
 
