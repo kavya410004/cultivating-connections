@@ -19,3 +19,19 @@ function showForm(formNumber) {
         }
     });
 }
+document.addEventListener("DOMContentLoaded", function() {
+    const copyButton = document.getElementById('copy-button');
+    const textToCopy = document.getElementById('phone-number');
+
+    copyButton.addEventListener('click', function() {
+        const text = textToCopy.innerText; // Get the text to copy
+        const contactAlert = document.getElementById('contact-alert');
+        // Use the Clipboard API to copy text to clipboard
+        navigator.clipboard.writeText(text).then(function() {
+            console.log('Text copied to clipboard');
+            contactAlert.classList.toggle('d-none');
+        }, function(err) {
+            console.error('Failed to copy text to clipboard', err);
+        });
+    });
+});

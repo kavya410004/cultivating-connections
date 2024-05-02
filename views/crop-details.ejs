@@ -1,44 +1,53 @@
 <%-include("partials/header.ejs") %>
+<div class="main">
 
- <div class = "d-flex flex-row justify-content-center">
-    <div class = "crop-details-box d-flex flex-row p-4 row">
-        <div class = " col-12 col-md-6">
-            <img  src="images/tomatoes-in-hand.avif" alt="Card image" style="width:100%" class = "image-crop-details ">
-        </div>
-        <div class = "p-5 col-12 col-md-6">
-            <h1 class = "crop-name-heading mb-4">Crop name</h1>
-            <h3 class = "mb-3">Quantity: Quantity per Kg</h3>
-            <h3 class = "mb-3">Price: Price per Kg  </h3>
-            <h3 class = "mb-3">Listed Date : date </h3>
-
+ <% if(locals.crop){ %>
+    <div class = "d-flex flex-row justify-content-center">
+        <div class = "d-flex flex-row row crop-details-box ">
+            <div class = "col-12 col-md-6 crop-image-box">
+                <img  src= "/<%= crop.crop_image_path %>" alt="crop-image" class = "image-crop-details p-1">
+            </div>
+            <div class = "crop-details col-12 col-md-6">
+                <h2 class = "crop-name-heading"><%= crop.crop_name %></h2>
+                <p ><strong>Price per kg : </strong> <%= crop.crop_price %>/- </p>
+                <p ><strong>Quantity : </strong><%= crop.crop_quantity %> kg</p>
+                <p ><strong>Listed Date : </strong> <%= crop.date %> </p>
+                <form action="/edit-quantity/<%= crop.crop_id %>" method="POST">
+                    <div class="input-group justify-content-start">
+                        <input type="number" class="quantity-input" name="updatedQuantity" placeholder="Enter quantity" autocomplete="off" required="" min="0">
+                        <input class="button--submit" value="Update" type="submit">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
- </div>
+ <% } %>
+    <h1 class="requests-heading text-center">Request Tab</h1>
+    <% if(locals.requests && requests != -1){ %>
+        <% requests.forEach((request) => { %>
+            <div class = "d-flex flex-column align-items-center">
+                <div class="request-tab d-flex flex-row mb-3 w-100 row">
+                    <div class="col-8 col-md-10 d-flex flex-column justify-content-center">
+                        <p class="medium-card-text"><strong>Name: </strong><%= request.buyer_name %></p>
+                        <p class="small-card-text"><strong>Quantity: </strong><%= request.request_quantity %> kg</p>
+                    </div>
+                    <div class = "col-4 col-md-2 buttons-tab">
+                        <a href="/accept/<%= request.request_id %>" class="mb-2 accept-button  
+                            <% if(parseInt(crop.crop_quantity) < parseInt(request.request_quantity)){ %>
+                                <%= "d-none" %>
+                            <% }%>
+                            ">accept</a>
+                        <a href="/reject/<%= request.request_id %>" class = "reject-button">reject</a>
+                    </div>
+                 </div>
+            </div>
 
- <h1 class="crop-name-heading text-center">Request Tab</h1>
-
-<div class = "d-flex flex-column align-items-center">
-    <div class="request-tab d-flex flex-row mb-3">
-        <div>
-            <h2>Consumer name</h2>
-            <h5>Quantity</h5>
-        </div>
-        <div class = "buttons-tab">
-            <button class="mb-2 accept-button">accept</button>
-            <button class = "reject-button">reject</button>
-        </div>
-     </div>
-     <div class="request-tab d-flex flex-row">
-        <div>
-            <h2>Consumer name</h2>
-            <h5>Quantity</h5>
-        </div>
-        <div class = "buttons-tab">
-            <button class="mb-2 accept-button">accept</button>
-            <button class = "reject-button">reject</button>
-        </div>
-     </div>
-</div>
+        <% }); %>
+    <% }else{ %>
+          <div class="text-center shadow-container">
+                <p>You have not received any requests yet</p>
+          </div>
+    <% } %>
  
     
 

@@ -1,0 +1,19 @@
+<%-include("partials/C-header.ejs") %>
+<% if(locals.farmer){ %>
+<div class="d-flex flex-row justify-content-center align-items-center">
+    <div class="contact-with-farmer-container">
+        <h1>Farmer's Contact Info</h1>
+        <p><strong>Name: </strong><span><%= farmer.name_ %></span></p>
+        <p class="phone-number"><strong>Phone Number: </strong><span id="phone-number"> <%= farmer.phone_number %> </span></p>
+        <div  class="d-flex flex-row justify-content-center align-items-center" >
+            <button id="copy-button">Copy to Clipboard</button>
+        </div>
+        <div id="contact-alert" class="alert alert-success alert-dismissible m-2 text-center d-none">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <i class="fa-solid fa-check"></i><strong> Copied successfully!</strong>
+            <a href="/buyer-home">Go to home</a>
+        </div>
+    </div>
+</div>
+<% } %>
+<%-include("partials/footer.ejs") %>

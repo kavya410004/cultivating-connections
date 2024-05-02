@@ -1,64 +1,64 @@
 <%-include("partials/C-header.ejs") %>
-<div class = "d-flex flex-column align-items-center mt-4">
-    <div class="group-search-icon ">
-        <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24">
-            <g>
-                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-            </g>
-        </svg>
-        <input placeholder="Search Crop" type="search" class="search-input">
+<div class="main">
+<form action="/search" method="POST">
+    <div class="input-group-for-searchbar mt-4">
+        <input type="text" class="input-for-searchbar"  name="searchText" placeholder="Enter to search" autocomplete="off">
+        <input class="button--submit-for-searchbar" value="Search" type="submit">
     </div>
-</div>
-<div class = "d-flex flex-row justify-content-end mt-4">
-    <div class="paste-button">
-        <button class="button-dp">Select District &nbsp; ▼</button>
-        <div class="dropdown-content">
-          <a id="top" href="#">Tirupathi</a>
-          <a id="middle" href="#">Nellore</a>
-          <a id="bottom" href="#">Chittor</a>
+</form>
+
+<% if(locals.buyerErrorMessage){ %>
+  <div class="alert alert-warning alert-dismissible m-1 m-md-3">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= buyerErrorMessage %>
+  </div>
+<% } %>
+
+<hr>
+    <% if(locals.searchResults){ %>
+        <h1 class = "main-heading mb-3">Search Results:</h1>
+        <div class="row">
+            <% if(searchResults != -1){ %>
+                <% searchResults.forEach((result) => { %>
+                    <div class="col-12 col-md-6 col-xl-4 d-flex justify-content-center"> 
+                        <div class="card crop-container" style="max-width:400px">
+                            <img class="card-img-top crop-image" src= <%= result.crop_image_path %> alt="crop-image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title"><%= result.crop_name %></h4>
+                                <p class="card-text">
+                                    <strong>Sold by :</strong> <%= result.farmer_name %><br>
+                                    <strong>District :</strong> <%= result.district %><br>
+                                    <strong>Price :</strong> <%= result.crop_price %>/- per kg <br>
+                                    <strong>Quantity available:</strong> <%= result.crop_quantity %>kg <br>
+                                    <strong>Crop listed on :</strong> <%= result.date %> <br> 
+                                </p>
+                            </div>
+                            <% if(locals.isLoggedIn && isLoggedIn){ %>
+                                <form action="/send-request/<%= result.crop_id %>" method="POST">
+                                    <div class="input-group">
+                                        <input type="number" class="quantity-input" name="requestedQuantity" placeholder="Enter quantity" autocomplete="off" required="" min="1" input="validity.valid||(value='');">
+                                        <input class="button--submit" value="Request" type="submit">
+                                    </div>
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
+
+                <% }); %>
+            <% }else{ %>
+                <div class="text-center shadow-container">
+                    <p>No results found.</p>
+                </div>
+            <% } %>
         </div>
-    </div>
-</div>
-<hr class="">
-
-
-<div class = "p-3">
-    <h1 class = "main-heading mb-3">Search Results:</h1>
-    <div class="search-result-box p-3 w-100">
-        <div class="row p-3"> 
-            <img class="mr-5  col-12 col-md-4" src="images/tomatoes-in-hand.avif" alt="Card image" style="width:37%">
-           <div class = "col-12 col-md-7">
-            <div class = "row p-4">
-                <div class = "mr-4 col-12 col-lg-5">
-                    <h4 class="crop-name-heading mb-3">crop name</h4>
-                    <h4 class="crop-name-heading mb-3">village name</h4>
-                    <h4 class="crop-name-heading">farmer name</h4>
-                </div>
-                <div class = "m-4  ml-auto col-12 col-lg-5">
-                    <h4 class="crop-name-heading mb-4">Quantity: 10kg</h4>
-                    <h4 class="crop-name-heading mb-4">Posted on: 12-3-2023</h4>
-                </div>
+    <% }else{ %>
+        <div class="buyer-home-bg-img-section">
+            <div class="text-center shadow-container">
+                <p>Search for crops to view the results here.</p>
             </div>
-            <!-- <div class = "row">
-                <div class = "col-8 col-md-4 ">
-                    <label for="inputQuantity" class="crop-name-heading">Enter desired quantity:</label>
-                    <input type="number" autocomplete="off" name="text" class="input-quantity" placeholder="In Kg" id = "inputQuantity">
-                </div>
-                <div class = " col-md-4 d-flex align-items-end ">
-                    <button class = "accept-button">Send request</button>
-                </div>
-            </div> -->
-            <form action="/send-request">
-                <div class="input-group">
-                  <input type="number" class="quantity-input" id="" name="desired-quantity" placeholder="Enter quantity" autocomplete="off">
-                  <input class="button--submit" value="Send Request" type="submit">
-                </div>
-              </form>
-           </div>    
         </div>
-        
-    </div>
-</div>
+    <% } %>
 
+<%-include("partials/footer.ejs") %>
   
 

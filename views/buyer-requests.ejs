@@ -1,29 +1,37 @@
 <%-include("partials/C-header.ejs") %>
+<div class="main">
 <h1 class = "main-heading">Request Status</h1>
 
+<% if(locals.requests && requests != -1){ %>
+    <% requests.forEach((request) => { %>
+        <div class = "consumer-request-tab mb-3">
+            <% if(request.request_status == 'R'){ %>
+                <h2>Request rejected</h2>
+            <% }else if(request.request_status == 'A'){ %>
+                <h2>Request accepted</h2>
+            <% }else{ %>
+                <h2>Request pending</h2>
+            <% } %>
+            <div class = "row">
+                <div class = "col-12">
+                    <p><strong>Request id: </strong><%= request.request_id %></p>
+                    <p><strong>Crop: </strong><%= request.crop_name %></p>
+                    <p><strong>Quantity: </strong><%= request.request_quantity %> kg</p>
+                    <p><strong>Price per kg: </strong><%= request.crop_price %>/-</p>
+                    <p><strong>Total price: </strong><%= request.request_quantity * request.crop_price %>/-</p>
+                </div>
+                <% if(request.request_status === 'A'){ %>
+                    <div class = "col-12 text-center">
+                        <a class="accept-button connect-button" href="/connect/<%= request.crop_id %>" >Connect with farmer</a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    <% }); %>
+<% }else{ %>
+    <div class="text-center shadow-container">
+        <p>You have not sent any requests</p>
+    </div>
+<% } %>
 
-<div class = "consumer-request-tab p-3">
-    <h2>Request Accepted</h2>
-    <div class = "row">
-        <div class = "ml-2 col-6" style="font-weight: 600;">
-            <p>Request id:</p>
-            <p>Crop:</p>
-            <p>Cost:</p>
-            <p>Quantity:</p>
-        </div>
-        <div class = "col-8 col-md-5 p-5">
-            <button class = "accept-button">Connect with farmer</button>
-        </div>
-    </div>
-</div>
-<div class = "consumer-request-tab p-3 mt-3">
-    <h2>Request Rejected</h2>
-    <div class = "row">
-        <div class = "ml-2 col-6" style="font-weight: 600;">
-            <p>Request id:</p>
-            <p>Crop:</p>
-            <p>Cost:</p>
-            <p>Quantity:</p>
-        </div>
-    </div>
-</div>
+<%-include("partials/footer.ejs") %>

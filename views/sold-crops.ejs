@@ -1,34 +1,34 @@
 <%-include("partials/header.ejs") %>
-<div class="">
+<div class="main">
+<div>
     <div class = "p-3">
-        <h1 class="main-heading ">Sold crop history</h1>
-        <div class="sold-history-tab d-flex flex-row mb-3 w-100">
-            <div class = "sold-icon-style d-flex flex-column justify-content-center m-4">
-                <i class="fa-solid fa-cart-shopping fa-lg"></i>
+        <h1 class="main-heading">Sold crop history</h1>
+        <% if(locals.requests && requests != -1){ %>
+            <% requests.forEach((request) => { %>
+                <div class="sold-history-tab d-flex flex-row mb-3 w-100">
+                    <div class = "sold-icon-style d-flex flex-column justify-content-center m-2 m-md-4">
+                        <i class="fa-solid fa-seedling fa-lg"></i>
+                    </div>
+                    
+                    <div class = "mr-auto d-flex flex-column justify-content-center">
+                        <p class="medium-card-text"><%= request.crop_name %></p>
+                        <p class="small-card-text"><%= request.request_quantity %> kg</p>
+                    </div>
+                    <div class = "ml-auto d-flex flex-column justify-content-center">
+                        <p class="medium-card-text"><%= request.buyer_name %></p>
+                        <p class="small-card-text"><%= request.crop_price %>/- per kg</p>
+                    </div>
+                </div>
+            <% }); %>
+        <% }else if(requests == -1){ %>
+            <div class="text-center shadow-container">
+                <p>You have no sold crops yet.</p>
             </div>
-            
-            <div class = "mt-2">
-                <h2>Crop name</h2>
-                <h5>Quantity</h5>
+        <% }else if(locals.errorMessage){ %>
+            <div class="text-center shadow-container">
+                <p><%= errorMessage %></p>
             </div>
-            <div class = "ml-auto m-2">
-                <h2>Consumer name</h2>
-                <h5>Price per kg</h5>
-            </div>
-         </div>
-         <div class="sold-history-tab d-flex flex-row w-100">
-            <div class = "sold-icon-style d-flex flex-column justify-content-center m-4">
-                <i class="fa-solid fa-cart-shopping fa-lg"></i>
-            </div>
-            <div class = "mt-2">
-                <h2>Consumer name</h2>
-                <h5>Quantity</h5>
-            </div>
-            <div class = "ml-auto m-2">
-                <h2>Consumer name</h2>
-                <h5>Price per kg</h5>
-            </div>
-         </div>
+        <% } %>
     </div>
      
     </div>

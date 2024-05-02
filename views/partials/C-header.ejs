@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cultivating Connections</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images\favicon.png" type="image/x-icon">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,15 +34,23 @@
             <li class="nav-item active">
               <a class="nav-link "href="/buyer-home">Home</a>
             </li> 
-            <li class="nav-item active">
-              <a class="nav-link " href="/buyer-requests">Requests</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link " href="/buyer-settings">Settings</a>
-            </li>
+            <% if(locals.isLoggedIn && isLoggedIn){ %>
+              <li class="nav-item active">
+                <a class="nav-link " href="/buyer-requests">Requests</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link " href="/buyer-settings">Settings</a>
+              </li>
+            <% }else{ %>
+              <li class="nav-item active">
+                <a class="nav-link " href="/login">Login</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link " href="/register">Register</a>
+              </li>
+            <% } %>
           </ul>
         </div>
       </nav>
     </div>
   </header>
-  <div class="main">

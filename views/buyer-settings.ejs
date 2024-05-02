@@ -1,17 +1,62 @@
 <%-include("partials/C-header.ejs") %>
+<div class="main">
 
-<div>
+    <div>
         <h1 class="main-heading ">Settings : </h1>
-    <div class = "card-setting-style w-100">
-        <h1 class = "setting-font mb-3">Your account:</h1>
-        <p class = "setting-font-2">Name: </p>
-        <p class = "setting-font-2">Phone no: </p>
-        <p class = "setting-font-2">Password: </p>
+        <% if(locals.errorMessage){ %>
+          <div class="alert alert-warning alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Warning!</strong> <%= errorMessage %>
+          </div>
+        <% }else if(locals.successMessage) { %> 
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong><%= successMessage %></strong> 
+            </div>
+        <% } %>
+        <div class = "card-setting-style w-100">
+            <h1 class = "setting-font mb-3">Your account:</h1>
+            <% if(locals.buyer){ %>
+                <p class = "setting-font-2">Name: <%= buyer.name_ %> </p>
+                <p class = "setting-font-2">Phone no: <%= buyer.phone_number %> </p>
+                <p class = "setting-font-2">Password: ******** </p>
+            <% }else{ %>
+                <div class="text-center shadow-container">
+                    <p>Please login to see your account details.</p>
+                </div>
+            <% } %>
+        </div>
+        <div class = "mt-5 w-100 text-center"> 
+            <button class = "accept-button mr-4"  data-toggle="modal" data-target="#staticBackdrop1">Change Password</button>
+            <button class = "reject-button ml-4"><a  href="/logout"  style="text-decoration: none; color: #ffff;">Log out</a></button>
+        </div>
+
+
+    <!-- Modal 1 -->
+    <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+            <div class="modal-content modal-style-edit">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-heading-style" id="staticBackdropLabel">Enter details that you want to change</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/buyer-settings" method="POST">
+                    <div class="modal-body">     
+                        <label class = "label-head" >Enter new password :</label>
+                        <input type="password" name="password1" class="input-modal" >
+                        <label class = "label-head" >Confirm password :</label> 
+                        <input type="password" name="password2" class="input-modal">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="modal-submit-button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class = "mt-5 w-100 text-center"> 
-        <button class = "accept-button mr-4">Change Password</button>
-        <button class = "reject-button ml-4"><a  href="/"  style="text-decoration: none; color: #ffff;"> Delete Account</a></button>
-    </div>
+
     
 </div>
 

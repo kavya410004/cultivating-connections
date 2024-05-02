@@ -1,0 +1,103 @@
+<%-include("partials/header.ejs") %>
+<div class="main-farmer-home"> 
+  <% if(locals.errorMessage){ %>
+    <div class="alert alert-warning  alert-dismissible m-2 ">
+      <strong>Warning!</strong> <%= errorMessage %>
+    </div>
+  <% } %>   
+  <div class="farmer-quote-container">
+    <div class="shade-overlay">
+      <h1 class="main-quote">Farmers, planting hope, harvesting joy. Let's grow together!</h1>
+      <button class="button__" onclick="location.href='#dashboard';">
+        Your listed crops
+      </button>
+    </div>
+  </div>
+  <div id="dashboard" class="content-wrapper">
+    <div>
+      <h1 class="main-heading">Dashboard</h1>
+    </div>
+    <div id="crops-on-sale">
+      <div class="row">
+        <% if(locals.crops && crops != -1){ %>
+          <% crops.forEach((crop) => { %>
+            <div class="col-12 col-md-6 col-xl-4 d-flex justify-content-center"> 
+              <div class="card crop-container" style="max-width:400px">
+                <img class="card-img-top crop-image" src= <%= crop.crop_image_path %> alt="crop-image" style="width:100%">
+                <div class="card-body">
+                  <h4 class="card-title"><%= crop.crop_name %></h4>
+                  <p class="card-text">
+                    <strong>Price :</strong> <%= crop.crop_price %>/- per kg <br>
+                    <strong>Quantity :</strong> <%= crop.crop_quantity %>kg <br>
+                    <strong>Crop listed for sale on :</strong> <%= crop.date %> <br> 
+                  </p>
+                  <div class = "d-flex flex-row justify-content-center ">
+                    <a href="/crop-details/<%= crop.crop_id %>">
+                      <button class = "view-more-btn">View more</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <% }); %>
+        <% }else{ %>
+          <div class="text-center shadow-container">
+            <p>You have not listed any crops for sale</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+    <button type="button" class="button-add" data-toggle="modal" data-target="#staticBackdrop">Sell crop</button> 
+
+      <!-- Add Crop Modal -->
+      <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+          <div class="modal-content modal-style-edit">
+            <div class="modal-header">
+              <h5 class="modal-title modal-heading-style" id="staticBackdropLabel">Add crop details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/add-crop" method="POST" enctype="multipart/form-data">
+            <div class="modal-body">     
+              <div class="d-flex justify-content-center">
+                <label class="custum-file-upload" for="image">
+                  <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path fill="" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+                  </div>
+                  <div class="text">
+                    <span>Click to upload crop image</span>
+                  </div>
+                  <input type="file" id="image" name="cropImage" accept="image/*">
+                </label>
+              </div>
+              <label class = "label-head" >Crop name :</label>
+              <input type="text" name="cropName" class="input-modal" placeholder="Enter crop name" >
+              <label class = "label-head" >Quantity in kg :</label> 
+              <input type="number" name="cropQuantity" class="input-modal" placeholder="Enter quantity" autocomplete="off" required="" min="1" input="validity.valid||(value='');">
+              <label class = "label-head" >Price per kg :</label> 
+              <input type="number" name="pricePerKg" class="input-modal price-input" placeholder="Enter price per kg" ><span> /kg</span>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="modal-submit-button">Submit</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <%-include("partials/footer.ejs") %>
+        
+
+
+
+        <!-- <form action="/send-request">
+          <div class="input-group">
+            <input type="number" class="quantity-input" id="" name="desired-quantity" placeholder="Enter quantity" autocomplete="off">
+            <input class="button--submit" value="Send Request" type="submit">
+          </div>
+        </form> -->

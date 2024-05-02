@@ -1,18 +1,52 @@
 <%-include("partials/header.ejs") %>
-<div class = "p-3">
+<div class="main">
+<div>
     <h1 class="main-heading ">Settings : </h1>
-    <div class = "card-setting-style w-100">
+    <div class = "card-setting-style">
         <h1 class = "setting-font mb-3">Your account:</h1>
-        <p class = "setting-font-2">Name: </p>
-        <p class = "setting-font-2">Village: </p>
-        <p class = "setting-font-2">Phone no: </p>
+        <% if(locals.farmer){ %>
+            <p class = "setting-font-2"><strong>Name: </strong>     <%= farmer.name_ %> </p>
+            <p class = "setting-font-2"><strong>District: </strong>  <%= farmer.district %> </p>
+            <p class = "setting-font-2"><strong>Phone no: </strong> <%= farmer.phone_number %> </p>
+        <% }else{ %>
+            <div class="text-center shadow-container">
+                <p>Please login to see your account details.</p>
+            </div>
+        <% } %>
        
     </div>
     <div class = "mt-5 w-100 text-center"> 
-        <button class = "accept-button mr-4"><a  href="/loginpage"  style="text-decoration: none; color: #ffff;">Edit details</a> </button>
-        <button class = "reject-button ml-4"><a  href="/consumerhome"  style="text-decoration: none; color: #ffff;"> Delete Account</a></button>
+        <button class = "accept-button mr-md-4" data-toggle="modal" data-target="#staticBackdrop1">Edit details</button>
+        <button class = "reject-button ml-md-4"><a  href="/logout"  style="text-decoration: none; color: #ffff;"> Log out</a></button>
     </div>
-    
+
+
+
+    <!-- Modal 1 -->
+    <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+            <div class="modal-content modal-style-edit">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-heading-style" id="staticBackdropLabel">Edit details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/edit-farmer-details" method="POST">
+                    <div class="modal-body">
+                        <label class = "label-head" >Only enter the fields which you want to edit</label>     
+                        <label class = "label-head" >Name :</label>
+                        <input type="text" name="farmerName" class="input-modal" >
+                        <label class = "label-head" >District :</label> 
+                        <input type="text" name="district" class="input-modal">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="modal-submit-button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 
