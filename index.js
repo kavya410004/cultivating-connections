@@ -61,7 +61,7 @@ async function addCropDetails(name, quantity, price, imagePath,farmerPhoneNumber
   let year = date.getFullYear();
   let currentDate = `${day}-${month}-${year}`;
   let dbImagePath = imagePath.slice(7);
-  await db.query("INSERT INTO crops(crop_name, crop_price, crop_quantity,crop_listed_on, crop_image_path,farmer_phone_number) VALUES ($1, $2, $3, $4, $5, $6);",[
+  await db.query("INSERT INTO crops(crop_name, crop_price, crop_quantity,crop_listed_on, crop_image_path,farmer_phone_number) VALUES ($1, $2, $3, TO_DATE($4, 'DD-MM-YYYY') , $5, $6);",[
     name,
     parseFloat(price),
     parseInt(quantity),
